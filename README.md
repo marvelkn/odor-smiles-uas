@@ -21,7 +21,7 @@ Untuk batch, unduh templat. Aplikasi menerima CSV UTF-8 dengan satu kolom `smile
 1. Publikasikan direktori ini sebagai repo GitHub yang berisi bundle native di `artifacts/xgboost-optuna-v1/`. Pertahankan file model terpisah.
 2. Pastikan tab **Actions** menunjukkan tes CPU dan aplikasi lulus.
 3. Buka [Streamlit Community Cloud](https://share.streamlit.io/) dan pilih **Create app**. Gunakan repo yang baru, branch `main`, serta `app.py` sebagai entrypoint.
-4. Pada **Advanced settings**, pilih **Python 3.12**. Bundle ada di repo sehingga tidak membutuhkan secret.
+4. Pada **Advanced settings**, pilih **Python 3.12** atau **Python 3.14**. `requirements.txt` memilih versi SciPy yang sesuai dengan Python pada host. Bundle ada di repo sehingga tidak membutuhkan secret.
 5. Deploy, buka URL publik, dan uji contoh bawaan, input yang salah, unduhan, serta CSV campuran valid dan invalid. Ulangi dari perangkat atau sesi lain.
 6. Jalankan satu prediksi sebelum presentasi karena layanan dapat berhibernasi setelah tidak digunakan. Siapkan versi lokal sebagai cadangan.
 

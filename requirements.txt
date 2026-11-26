@@ -1,6 +1,7 @@
 streamlit==1.66.0
 rdkit==2026.3.4
 numpy==2.3.5
-scipy==1.15.3
+scipy==1.15.3; python_version < "3.14"
+scipy==1.17.1; python_version >= "3.14"
 xgboost-cpu==2.1.4
 pyarrow==26.0.1
