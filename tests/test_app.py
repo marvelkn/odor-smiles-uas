@@ -63,6 +63,15 @@ def test_catalog_searches_by_name_cid_and_smiles():
     assert any("Tidak ada hasil" in item.value for item in app.info)
 
 
+def test_cached_catalog_updates_when_file_contents_change(monkeypatch, tmp_path):
+    monkeypatch.setattr(ui, "DATA", tmp_path)
+    catalog_file = tmp_path / "molecule_catalog.json"
+    catalog_file.write_text('["old"]', encoding="utf-8")
+    assert ui.public_data(catalog_file.name) == ["old"]
+    catalog_file.write_text('["new"]', encoding="utf-8")
+    assert ui.public_data(catalog_file.name) == ["new"]
+
+
 def test_compare_displays_scores_per_molecule_and_resets_for_new_selection():
     app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
     assert app.button(key="run_comparison").disabled

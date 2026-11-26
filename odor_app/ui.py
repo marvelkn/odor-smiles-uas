@@ -24,8 +24,13 @@ def get_predictor() -> Predictor:
 
 
 @st.cache_data(max_entries=2, show_spinner=False)
+def _decode_public_data(contents: bytes):
+    return json.loads(contents)
+
+
 def public_data(name: str):
-    return json.loads((DATA / name).read_text(encoding="utf-8"))
+    # Streamlit may reload app code without clearing the previous data cache.
+    return _decode_public_data((DATA / name).read_bytes())
 
 
 def log_event(event: str, status: str, elapsed: float, row_count: int, version: str = "unknown") -> None:
