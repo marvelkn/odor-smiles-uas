@@ -4,7 +4,7 @@ from rdkit import Chem
 import streamlit as st
 
 from odor_app.batch import MAX_BATCH_ROWS, batch_csv, make_csv, predict_csv, read_smiles_csv, single_csv
-from odor_app.catalog import show_catalog, show_comparison
+from odor_app.catalog import TOP_CANDIDATES, show_catalog, show_comparison
 from odor_app.features import InvalidSmiles, MAX_SMILES_LENGTH
 from odor_app.ui import get_predictor, log_event, public_data
 
@@ -33,10 +33,6 @@ def clear_single():
 def clear_batch():
     st.session_state.pop("batch_outcome", None)
     st.session_state["upload_version"] = st.session_state.get("upload_version", 0) + 1
-
-
-def show_scores(rows):
-    st.table([{"Label": label, "Skor model": f"{score:.4f}"} for label, score in rows])
 
 
 def show_structure(smiles):
@@ -90,15 +86,18 @@ with single_tab:
     if prediction := st.session_state.get("prediction"):
         st.subheader("Hasil prediksi")
         threshold = f"{prediction.threshold:.2f}".replace(".", ",")
-        st.caption(f"Model {prediction.model_version} · ambang {threshold}")
+        st.caption(f"Model {prediction.model_version}")
         st.text(prediction.smiles)
-        st.markdown("**Label yang lolos ambang**")
-        if prediction.passing:
-            show_scores(prediction.passing)
-        else:
-            st.info(f"Tidak ada label yang mencapai ambang {threshold}.")
-        st.markdown("**Top 5 kandidat menurut skor**")
-        show_scores(prediction.scores[:5])
+        passed_count = len(prediction.passing)
+        st.write(f"**{passed_count} dari {len(prediction.scores)} label** lolos ambang {threshold}.")
+        st.table([
+            {
+                "Label aroma": label,
+                "Skor model": f"{score:.4f}",
+                "Status": "Lolos ambang" if score >= prediction.threshold else "Di bawah ambang",
+            }
+            for label, score in prediction.scores[:max(passed_count, TOP_CANDIDATES)]
+        ])
         st.caption("Skor membantu memeringkat label. Skor belum dikalibrasi sebagai peluang persepsi manusia dan tidak mengukur intensitas aroma.")
         with st.expander("Lihat struktur molekul"):
             try:

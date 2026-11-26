@@ -12,7 +12,7 @@ py -3.12 -m venv .venv
 .venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Buka `http://localhost:8501`, pilih contoh **Etanol**, lalu klik **Prediksi aroma**. Hasil memisahkan label yang mencapai ambang `0,60` dari lima kandidat dengan skor tertinggi. Unduhan CSV memuat skor semua label dan identitas versi model.
+Buka `http://localhost:8501`, pilih contoh **Etanol**, lalu klik **Prediksi aroma**. Satu tabel menampilkan semua label yang mencapai ambang `0,60`. Jika jumlahnya kurang dari lima, tabel melengkapinya dengan kandidat berskor tertinggi yang masih di bawah ambang. Kolom **Status** menandai posisi setiap label terhadap ambang. Unduhan CSV memuat skor semua label dan identitas versi model.
 
 Di tab **Bandingkan**, pilih dua atau tiga molekul. Tabel menampilkan gabungan lima kandidat teratas setiap molekul pada skala yang sama. Unduhan perbandingan berisi seluruh 107 skor per molekul. Di tab **Katalog**, cari nama, CID lengkap, atau potongan SMILES. Daftar yang tampil bisa diunduh dengan nama dan CID.
 

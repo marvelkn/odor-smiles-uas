@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import sys
 
+import pytest
 from streamlit.testing.v1 import AppTest
 
 from odor_app.batch import MAX_BATCH_ROWS, batch_csv, make_csv, read_smiles_csv
@@ -25,7 +26,8 @@ def test_example_prediction_and_clear():
     predict_button(app).click().run()
     assert not app.exception and not app.error
     assert any(item.value == "Hasil prediksi" for item in app.subheader)
-    assert any(len(table.value) == 5 for table in app.table)
+    assert len(app.table) == 1
+    assert len(app.table[0].value) == max(len(app.session_state["prediction"].passing), 5)
     next(button for button in app.button if button.label == "Bersihkan input dan hasil").click().run()
     assert app.text_input(key="smiles").value == ""
     assert not any(item.value == "Hasil prediksi" for item in app.subheader)
@@ -108,18 +110,27 @@ def test_missing_drawing_backend_does_not_block_prediction(monkeypatch):
     assert any("Gambar struktur belum tersedia" in item.value for item in app.info)
 
 
-def test_zero_labels_pass_does_not_hide_ranked_candidates(monkeypatch):
-    class LowScorePredictor:
+@pytest.mark.parametrize("passed_count", [0, 3, 5, 6])
+def test_single_table_shows_all_passing_labels_and_at_least_five_candidates(monkeypatch, passed_count):
+    class FixturePredictor:
         def predict(self, smiles):
-            return Prediction(smiles, tuple((f"LABEL_{n}", .45 - n / 100) for n in range(5)), .6, "fixture")
+            scores = tuple(
+                (f"LABEL_{n}", .60 + (passed_count - 1 - n) / 100 if n < passed_count else .45 - n / 100)
+                for n in range(8)
+            )
+            return Prediction(smiles, scores, .6, "fixture")
 
-    monkeypatch.setattr(ui, "get_predictor", LowScorePredictor)
+    monkeypatch.setattr(ui, "get_predictor", FixturePredictor)
     app = AppTest.from_file(str(ROOT / "app.py")).run()
     app.text_input(key="smiles").set_value("CCO")
     predict_button(app).click().run()
     assert not app.error and not app.exception
-    assert any("Tidak ada label" in item.value for item in app.info)
-    assert len(app.table[0].value) == 5
+    assert any(f"{passed_count} dari 8 label" in item.value for item in app.markdown)
+    assert len(app.table) == 1
+    table = app.table[0].value
+    shown_count = max(passed_count, 5)
+    assert table["Label aroma"].tolist() == [f"LABEL_{n}" for n in range(shown_count)]
+    assert table["Status"].tolist() == ["Lolos ambang"] * passed_count + ["Di bawah ambang"] * (shown_count - passed_count)
 
 
 def test_evaluation_shows_both_training_and_test():
