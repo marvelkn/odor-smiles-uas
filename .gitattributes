@@ -1,2 +1,4 @@
 *.ubj.gz binary
 *.npy binary
+# Bundle checksums refer to exact bytes on all platforms.
+artifacts/** -text
