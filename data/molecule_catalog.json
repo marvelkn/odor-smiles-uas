@@ -1,0 +1,502 @@
+[
+  {
+    "name": "Etanol",
+    "smiles": "CCO",
+    "cid": 702
+  },
+  {
+    "name": "Etil asetat",
+    "smiles": "CCOC(C)=O",
+    "cid": 8857
+  },
+  {
+    "name": "Vanilin",
+    "smiles": "COc1cc(C=O)ccc1O",
+    "cid": 1183
+  },
+  {
+    "name": "(-)-menthone",
+    "smiles": "CC(C)[C@@H]1CC[C@@H](C)CC1=O",
+    "cid": 26447
+  },
+  {
+    "name": "1-butanol",
+    "smiles": "CCCCO",
+    "cid": 263
+  },
+  {
+    "name": "1-heptanol",
+    "smiles": "CCCCCCCO",
+    "cid": 8129
+  },
+  {
+    "name": "1-hexadecanol",
+    "smiles": "CCCCCCCCCCCCCCCCO",
+    "cid": 2682
+  },
+  {
+    "name": "1-hexanol",
+    "smiles": "CCCCCCO",
+    "cid": 8103
+  },
+  {
+    "name": "1-octanol",
+    "smiles": "CCCCCCCCO",
+    "cid": 957
+  },
+  {
+    "name": "1-octen-3-ol",
+    "smiles": "C=CC(O)CCCCC",
+    "cid": 18827
+  },
+  {
+    "name": "1-pentanol",
+    "smiles": "CCCCCO",
+    "cid": 6276
+  },
+  {
+    "name": "2,3-butanedione",
+    "smiles": "CC(=O)C(C)=O",
+    "cid": 650
+  },
+  {
+    "name": "2,5-dimethylpyrazine",
+    "smiles": "Cc1cnc(C)cn1",
+    "cid": 31252
+  },
+  {
+    "name": "2,6-dimethylpyrazine",
+    "smiles": "Cc1cncc(C)n1",
+    "cid": 7938
+  },
+  {
+    "name": "2-acetylfuran",
+    "smiles": "CC(=O)c1ccco1",
+    "cid": 14505
+  },
+  {
+    "name": "2-butanone",
+    "smiles": "CCC(C)=O",
+    "cid": 6569
+  },
+  {
+    "name": "2-heptanone",
+    "smiles": "CCCCCC(C)=O",
+    "cid": 8051
+  },
+  {
+    "name": "2-octanone",
+    "smiles": "CCCCCCC(C)=O",
+    "cid": 8093
+  },
+  {
+    "name": "2-phenylethanol",
+    "smiles": "OCCc1ccccc1",
+    "cid": 6054
+  },
+  {
+    "name": "3-carene",
+    "smiles": "CC1=CCC2C(C1)C2(C)C",
+    "cid": 26049
+  },
+  {
+    "name": "4-isopropylbenzaldehyde",
+    "smiles": "CC(C)c1ccc(C=O)cc1",
+    "cid": 326
+  },
+  {
+    "name": "4-isopropylbenzyl alcohol",
+    "smiles": "CC(C)c1ccc(CO)cc1",
+    "cid": 325
+  },
+  {
+    "name": "Acetal",
+    "smiles": "CCOC(C)OCC",
+    "cid": 7765
+  },
+  {
+    "name": "Acetaldehyde",
+    "smiles": "CC=O",
+    "cid": 177
+  },
+  {
+    "name": "Acetoin",
+    "smiles": "CC(=O)C(C)O",
+    "cid": 179
+  },
+  {
+    "name": "Acetophenone",
+    "smiles": "CC(=O)c1ccccc1",
+    "cid": 7410
+  },
+  {
+    "name": "Alpha-ionone",
+    "smiles": "CC(=O)/C=C/C1C(C)=CCCC1(C)C",
+    "cid": 5282108
+  },
+  {
+    "name": "Alpha-pinene",
+    "smiles": "CC1=CCC2CC1C2(C)C",
+    "cid": 6654
+  },
+  {
+    "name": "Anethole",
+    "smiles": "C/C=C/c1ccc(OC)cc1",
+    "cid": 637563
+  },
+  {
+    "name": "Asam asetat",
+    "smiles": "CC(=O)O",
+    "cid": 176
+  },
+  {
+    "name": "Benzaldehida",
+    "smiles": "O=Cc1ccccc1",
+    "cid": 240
+  },
+  {
+    "name": "Benzoic acid",
+    "smiles": "O=C(O)c1ccccc1",
+    "cid": 243
+  },
+  {
+    "name": "Benzyl acetate",
+    "smiles": "CC(=O)OCc1ccccc1",
+    "cid": 8785
+  },
+  {
+    "name": "Benzyl alcohol",
+    "smiles": "OCc1ccccc1",
+    "cid": 244
+  },
+  {
+    "name": "Benzyl benzoate",
+    "smiles": "O=C(OCc1ccccc1)c1ccccc1",
+    "cid": 2345
+  },
+  {
+    "name": "Benzyl butyrate",
+    "smiles": "CCCC(=O)OCc1ccccc1",
+    "cid": 7650
+  },
+  {
+    "name": "Beta-caryophyllene",
+    "smiles": "C=C1CC/C=C(\\C)CC[C@@H]2[C@@H]1CC2(C)C",
+    "cid": 5281515
+  },
+  {
+    "name": "Beta-ionone",
+    "smiles": "CC(=O)/C=C/C1=C(C)CCCC1(C)C",
+    "cid": 638014
+  },
+  {
+    "name": "Beta-pinene",
+    "smiles": "C=C1CCC2CC1C2(C)C",
+    "cid": 14896
+  },
+  {
+    "name": "Bornyl acetate",
+    "smiles": "CC(=O)OC1CC2CCC1(C)C2(C)C",
+    "cid": 6448
+  },
+  {
+    "name": "Butyl acetate",
+    "smiles": "CCCCOC(C)=O",
+    "cid": 31272
+  },
+  {
+    "name": "Butyric acid",
+    "smiles": "CCCC(=O)O",
+    "cid": 264
+  },
+  {
+    "name": "Camphene",
+    "smiles": "C=C1C2CCC(C2)C1(C)C",
+    "cid": 6616
+  },
+  {
+    "name": "Carvacrol",
+    "smiles": "Cc1ccc(C(C)C)cc1O",
+    "cid": 10364
+  },
+  {
+    "name": "Cinnamaldehyde",
+    "smiles": "O=C/C=C/c1ccccc1",
+    "cid": 637511
+  },
+  {
+    "name": "Cinnamic acid",
+    "smiles": "O=C(O)/C=C/c1ccccc1",
+    "cid": 444539
+  },
+  {
+    "name": "Cinnamyl alcohol",
+    "smiles": "OC/C=C/c1ccccc1",
+    "cid": 5315892
+  },
+  {
+    "name": "Cis-3-hexen-1-ol",
+    "smiles": "CC/C=C\\CCO",
+    "cid": 5281167
+  },
+  {
+    "name": "Citral",
+    "smiles": "CC(C)=CCC/C(C)=C/C=O",
+    "cid": 638011
+  },
+  {
+    "name": "Citronellal",
+    "smiles": "CC(C)=CCCC(C)CC=O",
+    "cid": 7794
+  },
+  {
+    "name": "Citronellol",
+    "smiles": "CC(C)=CCCC(C)CCO",
+    "cid": 8842
+  },
+  {
+    "name": "Decanal",
+    "smiles": "CCCCCCCCCC=O",
+    "cid": 8175
+  },
+  {
+    "name": "Decanoic acid",
+    "smiles": "CCCCCCCCCC(=O)O",
+    "cid": 2969
+  },
+  {
+    "name": "Decyl acetate",
+    "smiles": "CCCCCCCCCCOC(C)=O",
+    "cid": 8167
+  },
+  {
+    "name": "Delta-decalactone",
+    "smiles": "CCCCCC1CCCC(=O)O1",
+    "cid": 12810
+  },
+  {
+    "name": "Diethyl malonate",
+    "smiles": "CCOC(=O)CC(=O)OCC",
+    "cid": 7761
+  },
+  {
+    "name": "Dihydrocoumarin",
+    "smiles": "O=C1CCc2ccccc2O1",
+    "cid": 660
+  },
+  {
+    "name": "Dimethyl disulfide",
+    "smiles": "CSSC",
+    "cid": 12232
+  },
+  {
+    "name": "Ethyl caproate",
+    "smiles": "CCCCCC(=O)OCC",
+    "cid": 31265
+  },
+  {
+    "name": "Eucalyptol",
+    "smiles": "CC12CCC(CC1)C(C)(C)O2",
+    "cid": 2758
+  },
+  {
+    "name": "Farnesol",
+    "smiles": "CC(C)=CCC/C(C)=C/CC/C(C)=C/CO",
+    "cid": 445070
+  },
+  {
+    "name": "Furaneol",
+    "smiles": "CC1=C(O)C(=O)C(C)O1",
+    "cid": 19309
+  },
+  {
+    "name": "Furfural",
+    "smiles": "O=Cc1ccco1",
+    "cid": 7362
+  },
+  {
+    "name": "Gamma-terpinene",
+    "smiles": "CC1=CCC(C(C)C)=CC1",
+    "cid": 7461
+  },
+  {
+    "name": "Geraniol",
+    "smiles": "CC(C)=CCC/C(C)=C/CO",
+    "cid": 637566
+  },
+  {
+    "name": "Geranyl acetate",
+    "smiles": "CC(=O)OC/C=C(\\C)CCC=C(C)C",
+    "cid": 1549026
+  },
+  {
+    "name": "Geranyl tiglate",
+    "smiles": "C/C=C(\\C)C(=O)OC/C=C(\\C)CCC=C(C)C",
+    "cid": 5367785
+  },
+  {
+    "name": "Geranylacetone",
+    "smiles": "CC(=O)CC/C=C(\\C)CCC=C(C)C",
+    "cid": 1549778
+  },
+  {
+    "name": "Guaiacol",
+    "smiles": "COc1ccccc1O",
+    "cid": 460
+  },
+  {
+    "name": "Hexanoic acid",
+    "smiles": "CCCCCC(=O)O",
+    "cid": 8892
+  },
+  {
+    "name": "Hexyl acetate",
+    "smiles": "CCCCCCOC(C)=O",
+    "cid": 8908
+  },
+  {
+    "name": "Humulene",
+    "smiles": "C/C1=C\\CC/C(C)=C/CC(C)(C)/C=C/C1",
+    "cid": 5281520
+  },
+  {
+    "name": "Indole",
+    "smiles": "c1ccc2[nH]ccc2c1",
+    "cid": 798
+  },
+  {
+    "name": "Isoamyl alcohol",
+    "smiles": "CC(C)CCO",
+    "cid": 31260
+  },
+  {
+    "name": "Isobutyric acid",
+    "smiles": "CC(C)C(=O)O",
+    "cid": 6590
+  },
+  {
+    "name": "Isoeugenol",
+    "smiles": "C/C=C/c1ccc(O)c(OC)c1",
+    "cid": 853433
+  },
+  {
+    "name": "Isovaleric acid",
+    "smiles": "CC(C)CC(=O)O",
+    "cid": 10430
+  },
+  {
+    "name": "Kamper",
+    "smiles": "CC12CCC(CC1=O)C2(C)C",
+    "cid": 2537
+  },
+  {
+    "name": "Lauric acid",
+    "smiles": "CCCCCCCCCCCC(=O)O",
+    "cid": 3893
+  },
+  {
+    "name": "Limonena",
+    "smiles": "C=C(C)C1CC=C(C)CC1",
+    "cid": 22311
+  },
+  {
+    "name": "Linalool",
+    "smiles": "C=CC(C)(O)CCC=C(C)C",
+    "cid": 6549
+  },
+  {
+    "name": "Linalyl acetate",
+    "smiles": "C=CC(C)(CCC=C(C)C)OC(C)=O",
+    "cid": 8294
+  },
+  {
+    "name": "Maltol",
+    "smiles": "Cc1occc(=O)c1O",
+    "cid": 8369
+  },
+  {
+    "name": "Menthyl acetate",
+    "smiles": "CC(=O)OC1CC(C)CCC1C(C)C",
+    "cid": 27867
+  },
+  {
+    "name": "Methyl anthranilate",
+    "smiles": "COC(=O)c1ccccc1N",
+    "cid": 8635
+  },
+  {
+    "name": "Methyl eugenol",
+    "smiles": "C=CCc1ccc(OC)c(OC)c1",
+    "cid": 7127
+  },
+  {
+    "name": "Methyl salicylate",
+    "smiles": "COC(=O)c1ccccc1O",
+    "cid": 4133
+  },
+  {
+    "name": "Myrcene",
+    "smiles": "C=CC(=C)CCC=C(C)C",
+    "cid": 31253
+  },
+  {
+    "name": "Nerolidol",
+    "smiles": "C=CC(C)(O)CC/C=C(\\C)CCC=C(C)C",
+    "cid": 5284507
+  },
+  {
+    "name": "Nonanal",
+    "smiles": "CCCCCCCCC=O",
+    "cid": 31289
+  },
+  {
+    "name": "Octan-2-ol",
+    "smiles": "CCCCCCC(C)O",
+    "cid": 20083
+  },
+  {
+    "name": "Octanal",
+    "smiles": "CCCCCCCC=O",
+    "cid": 454
+  },
+  {
+    "name": "Octanoic acid",
+    "smiles": "CCCCCCCC(=O)O",
+    "cid": 379
+  },
+  {
+    "name": "P-cresol",
+    "smiles": "Cc1ccc(O)cc1",
+    "cid": 2879
+  },
+  {
+    "name": "P-cymene",
+    "smiles": "Cc1ccc(C(C)C)cc1",
+    "cid": 7463
+  },
+  {
+    "name": "Propionaldehyde",
+    "smiles": "CCC=O",
+    "cid": 527
+  },
+  {
+    "name": "Terpinolene",
+    "smiles": "CC1=CCC(=C(C)C)CC1",
+    "cid": 11463
+  },
+  {
+    "name": "Thymol",
+    "smiles": "Cc1ccc(C(C)C)c(O)c1",
+    "cid": 6989
+  },
+  {
+    "name": "Trans-2-decenal",
+    "smiles": "CCCCCCC/C=C/C=O",
+    "cid": 5283345
+  },
+  {
+    "name": "Valeric acid",
+    "smiles": "CCCCC(=O)O",
+    "cid": 7991
+  }
+]

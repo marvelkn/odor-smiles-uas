@@ -85,14 +85,16 @@ def single_csv(prediction: Prediction) -> bytes:
     )
 
 
-def batch_csv(results: list[BatchResult], labels: tuple[str, ...]) -> bytes:
+def batch_csv(results: list[BatchResult], labels: tuple[str, ...], *, names: list[str] | None = None) -> bytes:
     def as_row(item: BatchResult):
+        identity = [item.row] if names is None else [item.row, names[item.row - 1]]
         pred = item.prediction
         if pred is None:
-            return [item.row, "invalid", item.message, "", "", "", "", *([""] * len(labels))]
+            return [*identity, "invalid", item.message, "", "", "", "", *([""] * len(labels))]
         by_label = dict(pred.scores)
-        return [item.row, "ok", "", pred.smiles, pred.model_version, pred.threshold,
+        return [*identity, "ok", "", pred.smiles, pred.model_version, pred.threshold,
                 len(pred.passing), *(by_label[label] for label in labels)]
 
-    return make_csv(("baris_data", "status", "pesan", "smiles_kanonik", "versi_model", "ambang",
+    identity_columns = ("baris_data",) if names is None else ("baris_data", "molekul")
+    return make_csv((*identity_columns, "status", "pesan", "smiles_kanonik", "versi_model", "ambang",
                      "jumlah_lolos", *(f"skor_{label}" for label in labels)), map(as_row, results))

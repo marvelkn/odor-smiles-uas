@@ -1,6 +1,6 @@
 # Prediksi aroma molekul · UAS IS411
 
-Aplikasi Streamlit untuk memeringkat 107 label aroma dari satu struktur molekul dalam format SMILES. Aplikasi memuat model XGBoost Optuna dari penelitian UAS pada CPU. Pilih contoh, tempel SMILES sendiri, atau unggah CSV kecil untuk memproses beberapa molekul dalam satu sesi.
+Aplikasi Streamlit untuk memeringkat 107 label aroma dari satu struktur molekul dalam format SMILES. Aplikasi memuat model XGBoost Optuna dari penelitian UAS pada CPU. Pilih salah satu dari 100 molekul katalog, tempel SMILES sendiri, atau jalankan prediksi batch.
 
 ## Jalankan lokal
 
@@ -14,7 +14,9 @@ py -3.12 -m venv .venv
 
 Buka `http://localhost:8501`, pilih contoh **Etanol**, lalu klik **Prediksi aroma**. Hasil memisahkan label yang mencapai ambang `0,60` dari lima kandidat dengan skor tertinggi. Unduhan CSV memuat skor semua label dan identitas versi model.
 
-Untuk batch, unduh templat. Aplikasi menerima CSV UTF-8 dengan satu kolom `smiles`, maksimal 100 baris dan 1 MB. Baris dengan struktur yang tidak valid mendapat pesan sendiri, sementara baris valid tetap diproses.
+Untuk batch, klik **Prediksi 100 molekul katalog** agar seluruh contoh langsung diproses. Kamu juga bisa mengunduh **CSV katalog** atau **template CSV**. Aplikasi menerima CSV UTF-8 dengan satu kolom `smiles`, maksimal 100 baris dan 1 MB. Baris dengan struktur yang tidak valid mendapat pesan sendiri, sementara baris valid tetap diproses.
+
+Katalog di [data/molecule_catalog.json](data/molecule_catalog.json) adalah 100 struktur unik dari data UAS yang sudah dibersihkan. Nama dicocokkan dari tabel sumber dengan CID dan SMILES kanonik. Katalog menyediakan contoh input untuk mencoba aplikasi dan tidak digunakan untuk melaporkan hasil evaluasi baru.
 
 ## Deploy ke Streamlit Community Cloud
 
