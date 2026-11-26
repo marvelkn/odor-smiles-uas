@@ -1,0 +1,6 @@
+rdkit==2026.3.4
+numpy==1.26.4
+scipy==1.15.3
+xgboost-cpu==2.1.4
+joblib==1.6.0
+scikit-learn==1.6.1

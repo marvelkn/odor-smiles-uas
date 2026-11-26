@@ -1,0 +1,5 @@
+[
+  {"name": "Etanol", "smiles": "CCO"},
+  {"name": "Etil asetat", "smiles": "CC(=O)OCC"},
+  {"name": "Vanilin", "smiles": "COc1cc(C=O)ccc1O"}
+]

@@ -1,0 +1,6 @@
+streamlit==1.66.0
+rdkit==2026.3.4
+numpy==2.3.5
+scipy==1.15.3
+xgboost-cpu==2.1.4
+pyarrow==26.0.1

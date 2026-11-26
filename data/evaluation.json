@@ -1,0 +1,20 @@
+{
+  "scope": "retrospective_reused_test",
+  "optuna": [
+    {
+      "model": "XGBoost",
+      "cv_macro_ap": 0.23405274070521315,
+      "ap_macro": 0.22965456577940405
+    },
+    {
+      "model": "LightGBM",
+      "cv_macro_ap": 0.23236139899042363,
+      "ap_macro": 0.23259758599367483
+    },
+    {
+      "model": "Random Forest",
+      "cv_macro_ap": 0.23248949371295366,
+      "ap_macro": 0.22382570459757498
+    }
+  ]
+}

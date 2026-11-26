@@ -1,0 +1,567 @@
+{
+  "version": "xgboost-optuna-v1",
+  "format_version": 1,
+  "candidate": "xgboost_optuna",
+  "source_run": "uas_gpu_lanjutan",
+  "threshold": 0.6,
+  "training_macro_ap_cv": 0.23405274070521315,
+  "source_selection_sha256": "0106a1a7b171603d3c9889ca95697e68d66e6ce2c416d816397598ef901a4c6e",
+  "feature_spec": {
+    "morgan_bits": 2048,
+    "morgan_radius": 2,
+    "include_chirality": false,
+    "descriptors": [
+      "MolWt",
+      "MolLogP",
+      "NumHDonors",
+      "NumHAcceptors",
+      "TPSA",
+      "NumRotatableBonds",
+      "HeavyAtomCount",
+      "RingCount"
+    ],
+    "dtype": "float32"
+  },
+  "format": "gzip + native XGBoost UBJSON, one file per label",
+  "models": [
+    {
+      "label": "ACIDIC",
+      "path": "models/label_000.ubj.gz"
+    },
+    {
+      "label": "ALCOHOLIC",
+      "path": "models/label_001.ubj.gz"
+    },
+    {
+      "label": "ALDEHYDIC",
+      "path": "models/label_002.ubj.gz"
+    },
+    {
+      "label": "ALLIACEOUS",
+      "path": "models/label_003.ubj.gz"
+    },
+    {
+      "label": "ALMOND",
+      "path": "models/label_004.ubj.gz"
+    },
+    {
+      "label": "AMBER",
+      "path": "models/label_005.ubj.gz"
+    },
+    {
+      "label": "ANIMAL",
+      "path": "models/label_006.ubj.gz"
+    },
+    {
+      "label": "ANISIC",
+      "path": "models/label_007.ubj.gz"
+    },
+    {
+      "label": "APPLE",
+      "path": "models/label_008.ubj.gz"
+    },
+    {
+      "label": "APRICOT",
+      "path": "models/label_009.ubj.gz"
+    },
+    {
+      "label": "AROMATIC",
+      "path": "models/label_010.ubj.gz"
+    },
+    {
+      "label": "BALSAMIC",
+      "path": "models/label_011.ubj.gz"
+    },
+    {
+      "label": "BANANA",
+      "path": "models/label_012.ubj.gz"
+    },
+    {
+      "label": "BERRY",
+      "path": "models/label_013.ubj.gz"
+    },
+    {
+      "label": "BLAND",
+      "path": "models/label_014.ubj.gz"
+    },
+    {
+      "label": "BRANDY",
+      "path": "models/label_015.ubj.gz"
+    },
+    {
+      "label": "BURNT",
+      "path": "models/label_016.ubj.gz"
+    },
+    {
+      "label": "BUTTERY",
+      "path": "models/label_017.ubj.gz"
+    },
+    {
+      "label": "CABBAGE",
+      "path": "models/label_018.ubj.gz"
+    },
+    {
+      "label": "CAMPHORACEOUS",
+      "path": "models/label_019.ubj.gz"
+    },
+    {
+      "label": "CARAMEL",
+      "path": "models/label_020.ubj.gz"
+    },
+    {
+      "label": "CEDARWOOD",
+      "path": "models/label_021.ubj.gz"
+    },
+    {
+      "label": "CHEESY",
+      "path": "models/label_022.ubj.gz"
+    },
+    {
+      "label": "CHEMICAL",
+      "path": "models/label_023.ubj.gz"
+    },
+    {
+      "label": "CHERRY",
+      "path": "models/label_024.ubj.gz"
+    },
+    {
+      "label": "CITRUS",
+      "path": "models/label_025.ubj.gz"
+    },
+    {
+      "label": "CLEAN",
+      "path": "models/label_026.ubj.gz"
+    },
+    {
+      "label": "COCOA",
+      "path": "models/label_027.ubj.gz"
+    },
+    {
+      "label": "COCONUT",
+      "path": "models/label_028.ubj.gz"
+    },
+    {
+      "label": "COFFEE",
+      "path": "models/label_029.ubj.gz"
+    },
+    {
+      "label": "COOKED",
+      "path": "models/label_030.ubj.gz"
+    },
+    {
+      "label": "COOLING",
+      "path": "models/label_031.ubj.gz"
+    },
+    {
+      "label": "CREAMY",
+      "path": "models/label_032.ubj.gz"
+    },
+    {
+      "label": "CUCUMBER",
+      "path": "models/label_033.ubj.gz"
+    },
+    {
+      "label": "DAIRY",
+      "path": "models/label_034.ubj.gz"
+    },
+    {
+      "label": "DRY",
+      "path": "models/label_035.ubj.gz"
+    },
+    {
+      "label": "EARTHY",
+      "path": "models/label_036.ubj.gz"
+    },
+    {
+      "label": "ETHEREAL",
+      "path": "models/label_037.ubj.gz"
+    },
+    {
+      "label": "FATTY",
+      "path": "models/label_038.ubj.gz"
+    },
+    {
+      "label": "FERMENTED",
+      "path": "models/label_039.ubj.gz"
+    },
+    {
+      "label": "FISHY",
+      "path": "models/label_040.ubj.gz"
+    },
+    {
+      "label": "FLORAL",
+      "path": "models/label_041.ubj.gz"
+    },
+    {
+      "label": "FOOD",
+      "path": "models/label_042.ubj.gz"
+    },
+    {
+      "label": "FRESH",
+      "path": "models/label_043.ubj.gz"
+    },
+    {
+      "label": "FRUITY",
+      "path": "models/label_044.ubj.gz"
+    },
+    {
+      "label": "GARLIC",
+      "path": "models/label_045.ubj.gz"
+    },
+    {
+      "label": "GASSY",
+      "path": "models/label_046.ubj.gz"
+    },
+    {
+      "label": "GERANIUM",
+      "path": "models/label_047.ubj.gz"
+    },
+    {
+      "label": "GRAPE",
+      "path": "models/label_048.ubj.gz"
+    },
+    {
+      "label": "GRAPEFRUIT",
+      "path": "models/label_049.ubj.gz"
+    },
+    {
+      "label": "GRASSY",
+      "path": "models/label_050.ubj.gz"
+    },
+    {
+      "label": "GREEN",
+      "path": "models/label_051.ubj.gz"
+    },
+    {
+      "label": "HAY",
+      "path": "models/label_052.ubj.gz"
+    },
+    {
+      "label": "HERBAL",
+      "path": "models/label_053.ubj.gz"
+    },
+    {
+      "label": "HONEY",
+      "path": "models/label_054.ubj.gz"
+    },
+    {
+      "label": "JASMIN",
+      "path": "models/label_055.ubj.gz"
+    },
+    {
+      "label": "LEATHERY",
+      "path": "models/label_056.ubj.gz"
+    },
+    {
+      "label": "LEMON",
+      "path": "models/label_057.ubj.gz"
+    },
+    {
+      "label": "LILY",
+      "path": "models/label_058.ubj.gz"
+    },
+    {
+      "label": "MEATY",
+      "path": "models/label_059.ubj.gz"
+    },
+    {
+      "label": "MEDICINAL",
+      "path": "models/label_060.ubj.gz"
+    },
+    {
+      "label": "MELON",
+      "path": "models/label_061.ubj.gz"
+    },
+    {
+      "label": "METALLIC",
+      "path": "models/label_062.ubj.gz"
+    },
+    {
+      "label": "MILD",
+      "path": "models/label_063.ubj.gz"
+    },
+    {
+      "label": "MILKY",
+      "path": "models/label_064.ubj.gz"
+    },
+    {
+      "label": "MINTY",
+      "path": "models/label_065.ubj.gz"
+    },
+    {
+      "label": "MUSHROOM",
+      "path": "models/label_066.ubj.gz"
+    },
+    {
+      "label": "MUSK",
+      "path": "models/label_067.ubj.gz"
+    },
+    {
+      "label": "MUSTY",
+      "path": "models/label_068.ubj.gz"
+    },
+    {
+      "label": "NUTTY",
+      "path": "models/label_069.ubj.gz"
+    },
+    {
+      "label": "ODORLESS",
+      "path": "models/label_070.ubj.gz"
+    },
+    {
+      "label": "OILY",
+      "path": "models/label_071.ubj.gz"
+    },
+    {
+      "label": "ONION",
+      "path": "models/label_072.ubj.gz"
+    },
+    {
+      "label": "OTHERS",
+      "path": "models/label_073.ubj.gz"
+    },
+    {
+      "label": "OZONIC",
+      "path": "models/label_074.ubj.gz"
+    },
+    {
+      "label": "PEACH",
+      "path": "models/label_075.ubj.gz"
+    },
+    {
+      "label": "PEAR",
+      "path": "models/label_076.ubj.gz"
+    },
+    {
+      "label": "PHENOLIC",
+      "path": "models/label_077.ubj.gz"
+    },
+    {
+      "label": "PINE",
+      "path": "models/label_078.ubj.gz"
+    },
+    {
+      "label": "PINEAPPLE",
+      "path": "models/label_079.ubj.gz"
+    },
+    {
+      "label": "PLUM",
+      "path": "models/label_080.ubj.gz"
+    },
+    {
+      "label": "POPCORN",
+      "path": "models/label_081.ubj.gz"
+    },
+    {
+      "label": "POWDERY",
+      "path": "models/label_082.ubj.gz"
+    },
+    {
+      "label": "PUNGENT",
+      "path": "models/label_083.ubj.gz"
+    },
+    {
+      "label": "ROASTED",
+      "path": "models/label_084.ubj.gz"
+    },
+    {
+      "label": "ROSE",
+      "path": "models/label_085.ubj.gz"
+    },
+    {
+      "label": "RUM",
+      "path": "models/label_086.ubj.gz"
+    },
+    {
+      "label": "SANDALWOOD",
+      "path": "models/label_087.ubj.gz"
+    },
+    {
+      "label": "SAVORY",
+      "path": "models/label_088.ubj.gz"
+    },
+    {
+      "label": "SHARP",
+      "path": "models/label_089.ubj.gz"
+    },
+    {
+      "label": "SMOKY",
+      "path": "models/label_090.ubj.gz"
+    },
+    {
+      "label": "SOUR",
+      "path": "models/label_091.ubj.gz"
+    },
+    {
+      "label": "SPICY",
+      "path": "models/label_092.ubj.gz"
+    },
+    {
+      "label": "SULFUROUS",
+      "path": "models/label_093.ubj.gz"
+    },
+    {
+      "label": "SWEET",
+      "path": "models/label_094.ubj.gz"
+    },
+    {
+      "label": "TEA",
+      "path": "models/label_095.ubj.gz"
+    },
+    {
+      "label": "TERPENIC",
+      "path": "models/label_096.ubj.gz"
+    },
+    {
+      "label": "TOBACCO",
+      "path": "models/label_097.ubj.gz"
+    },
+    {
+      "label": "TROPICAL-FRUIT",
+      "path": "models/label_098.ubj.gz"
+    },
+    {
+      "label": "UNPLEASANT",
+      "path": "models/label_099.ubj.gz"
+    },
+    {
+      "label": "VANILLA",
+      "path": "models/label_100.ubj.gz"
+    },
+    {
+      "label": "VEGETABLE",
+      "path": "models/label_101.ubj.gz"
+    },
+    {
+      "label": "VIOLET",
+      "path": "models/label_102.ubj.gz"
+    },
+    {
+      "label": "WARM",
+      "path": "models/label_103.ubj.gz"
+    },
+    {
+      "label": "WAXY",
+      "path": "models/label_104.ubj.gz"
+    },
+    {
+      "label": "WINE",
+      "path": "models/label_105.ubj.gz"
+    },
+    {
+      "label": "WOODY",
+      "path": "models/label_106.ubj.gz"
+    }
+  ],
+  "sha256": {
+    "feature_mask.npy": "77dff8bdbbdff6dd23c5a449e38ebdc0c1b8616c12112109822d191da0b7c178",
+    "labels.json": "0170a55c99e852e53adfe5a585cb69ae1a0c20ff7da50822b77597538c74406e",
+    "models/label_000.ubj.gz": "29935306b1fcf65d7ec234c37f42ae4dfaa96118d88be1b2287e37327713953b",
+    "models/label_001.ubj.gz": "08b3b2cc34ea3d5473102a8bdda1fd041fc9ebdd2825a43bc2017c72b7762c36",
+    "models/label_002.ubj.gz": "31e9e905c6dc75c81482d4b6c3f7270990eb67dff7fe2ae6c5aaaafcabf3aef8",
+    "models/label_003.ubj.gz": "d83337951e17d4c44fd24211e4c6fda50fce3f5138ab19f20b92fe66b617b53a",
+    "models/label_004.ubj.gz": "d41ac4e62d883a28490cca2eea7708ff6ddcc1f7b9e94bcd5ad0a0f32b6902f4",
+    "models/label_005.ubj.gz": "2cf4713b479324f79cdc3ddb45a25d1375e94bd6702e2608e0bc6d37fd4c8665",
+    "models/label_006.ubj.gz": "069219057e880a7f0ae0c25df92ea9500806165345bdefdbaddfa89c73f94a30",
+    "models/label_007.ubj.gz": "945f7cce934983feb7b73da1edbd34e815863fc643c46d17f6eea6fc933a4c91",
+    "models/label_008.ubj.gz": "9dc269a043f7fa6401b0a344b24fd05a72b92fef5617a9531f91b8a83b6d98ff",
+    "models/label_009.ubj.gz": "1e13188159690b3c6301e485af97ab3fc72644596c5c5b83c3067dc99125fec9",
+    "models/label_010.ubj.gz": "ab4268a2c4575e1881a84a48c6518d9c4d41e7f1911cbd94db5316d97eb09b17",
+    "models/label_011.ubj.gz": "5ce15cb1e87cd7addbe803fffcb41581290516db3bbfaca4b0a75b00e98d90d1",
+    "models/label_012.ubj.gz": "78e9ee7f18a16875bcd7e95a141523b320a4b314da922ee5594a0d296d8af821",
+    "models/label_013.ubj.gz": "e140d0e48a0d97e359901d48561fd808184e5419da1c334e4c5c73b0318feec7",
+    "models/label_014.ubj.gz": "97f2121b68cc950aaa3c4486678ab4772f5eb63e40caed8a4772e4743c31315a",
+    "models/label_015.ubj.gz": "37df5390053c655e53f5c40d8fadf3c69223d547efa2268f6d556be6bc2b8876",
+    "models/label_016.ubj.gz": "291f76b34825e18755d89badbe5681ef87b3720acf5f563c00690fc7cbbcdd94",
+    "models/label_017.ubj.gz": "d0cf68d2c390e53e8454ccfe1884b73dd3f2c9c79b306799c425553c087715ab",
+    "models/label_018.ubj.gz": "792a20fc5f37cfa2749d633fdcc4abf7143004e2158e5940a33e340e5452a878",
+    "models/label_019.ubj.gz": "d8754389844927562c5ac7214527a3775f75e606b9a6d76907559ce2d3ac9027",
+    "models/label_020.ubj.gz": "da5d75c5eac21982f83b5f36ffc29633b098b2d1f0abba06cc83cb342ffa7cca",
+    "models/label_021.ubj.gz": "c412b23cd8afbbf3186d4baf8ff6d948dd2123ac436a24830b6858fec5250366",
+    "models/label_022.ubj.gz": "a077bd147de5fccac0e43561f13c711637c3082f91a3c66fe4c9d8209c04632e",
+    "models/label_023.ubj.gz": "ee3dc543003d8aefe280634f081052377d06d931504c0be0b7a5180b33bfde3b",
+    "models/label_024.ubj.gz": "41e5b027617cc665adf02dbd31f1bcff520cb7ce9e3916e510728213a88fdf1c",
+    "models/label_025.ubj.gz": "ab6542d4bfd7186f4dc8c7cece93cde6e3e8bc91e4e19b57b0a12eb7e32a6f25",
+    "models/label_026.ubj.gz": "0766a11c2379c3d63f4e359cc8bbe2b9125970d0aa209c204a73cc9f17f527a6",
+    "models/label_027.ubj.gz": "8888320cbea2bdee4faa865dc4c2aee4c661b62b3fb68f53518ae492f8f6a4ad",
+    "models/label_028.ubj.gz": "bf2116ef1321951e7a31b7d48bcbacae600bfda9095e729a869711c1beaa91d0",
+    "models/label_029.ubj.gz": "f616432fefb990d57ccc9881c7117af571b43ec09cd3deecf71b58885c799726",
+    "models/label_030.ubj.gz": "a2867148ccdcb01a7c1abedc2cf99f5c50f9f0165bd46e1b5e733ef464c59e2a",
+    "models/label_031.ubj.gz": "46af581adc27caf0e3c1574fbcaf5af241dc47ff9d43c4545425cfed65293f1a",
+    "models/label_032.ubj.gz": "c01eb169077197f9ddf7cb519a20cc6197c389e6083880fa843b34dcae63f98e",
+    "models/label_033.ubj.gz": "00176ddabffcf3d154c1646baf2244916404f157f5b0e4e16227ff85438e2a80",
+    "models/label_034.ubj.gz": "ce94207e82539eb7a2cf4ed656c128040b464887230b69424028ff5b289af169",
+    "models/label_035.ubj.gz": "8831520d4ece7df9d1133452eb7f09a31090b013f941dd7f40778680086dca20",
+    "models/label_036.ubj.gz": "018f4934118f22da467d86818316987ba4a318473e354bbf7276c83e6bae2782",
+    "models/label_037.ubj.gz": "3d47e3fa53163432ff32504de36443aec340865e061b0227ce954565ce1856f7",
+    "models/label_038.ubj.gz": "85819b00ed4db1bc9cf49e52be3251a71a1cce2c6faf28b9f42b08d3c60d64f4",
+    "models/label_039.ubj.gz": "33ee739f043a033221d39285a565a642f174bc45e446519004b9c614f19cb5db",
+    "models/label_040.ubj.gz": "b6868daaf8281dbf9b2fdfca49af637b9accbe04a1f4f80b7256e1551f809f8a",
+    "models/label_041.ubj.gz": "6fb81e1428cb07896adc2f948031ff63c257c9fd385d688e02e7c523ec04863a",
+    "models/label_042.ubj.gz": "1935bb05b807810b14d7790f76724e223e594e0a86f9e4b0c26826151ec6086a",
+    "models/label_043.ubj.gz": "5d71aebf10f8345d3aea80c7ebfb8980c2765593d98c817a7c3e99ab591853c4",
+    "models/label_044.ubj.gz": "ded6290e36e0f1354be58f7857490caf6dea9debc9ba6575a2176814015cb70c",
+    "models/label_045.ubj.gz": "400249b6df3f1e4b0731448e1250a44a51add2f54df31e170d8de514a56ef027",
+    "models/label_046.ubj.gz": "729399e04da6834b9fb90b394b7de1e1fae02ae2b11dc2c45cb34f6bf5c43bf5",
+    "models/label_047.ubj.gz": "cc2397d60e22fee322da7b77b56311f17d3a760434b54c042a6c6417cd06f048",
+    "models/label_048.ubj.gz": "da586538e3280eed1372abb167fc1b39bcd8b213e58b03e294d38110a826fcc9",
+    "models/label_049.ubj.gz": "0d127afda6854c0d0f3b055dbcdd4dc33d4bc9ecac0044a73d75510586f33954",
+    "models/label_050.ubj.gz": "2c28ca9693568eae334a8b36cd1fa3d1418c5587666b9c81327c21b2f77cce66",
+    "models/label_051.ubj.gz": "df28f62e5ec603981103630c09ffb7d61f8783acb4a16192ec41dd4b3155fc27",
+    "models/label_052.ubj.gz": "c517ad57d449f86c3ecd061442e1396b24abbd63bbe453c2d0d6bccf6d9f036f",
+    "models/label_053.ubj.gz": "29afc49024ca7a4bc0f34150c403c99d01b147b8f47cd5b006ac75bbfee93636",
+    "models/label_054.ubj.gz": "de55f2ad6f557119cb79f8863b7a3a21f7386cea9a93b60bd2e8fc1dc03ea643",
+    "models/label_055.ubj.gz": "69dcd88dba78899fcbbe8ee7201f2e4540fa1ed365ad79e6c67c1097bbed9bc9",
+    "models/label_056.ubj.gz": "2d598d09bcd0afe88f2c6e023e378a747e19f2961ba2147e07bc604c30dad42c",
+    "models/label_057.ubj.gz": "242547592669af0cf07727f3c68df860820fbbee09b47d731f586844454f7235",
+    "models/label_058.ubj.gz": "a5ac0e85c497f460b67f8252d2844f8d2e9affa1e6d45647ceb58d6031dbb4f2",
+    "models/label_059.ubj.gz": "0aedefb51a11be77ee1180be5d53c17dea07e7d429538bbf03687826b91a243c",
+    "models/label_060.ubj.gz": "a21b41c724c7c087d00d850fc457b3a7a51e90b12bfb9819e6c752414474a7c0",
+    "models/label_061.ubj.gz": "78efa1d75b03ec4b1719386fb9cab5bd3c8666d3b52002858f45b8c0d7dfa4f4",
+    "models/label_062.ubj.gz": "50a3975ab6bf917e72de565763f3159ea6283b2b4ec74f55d5c2936911d0cac1",
+    "models/label_063.ubj.gz": "d8b53b9e2c3b4b44a409878c137d85f297022265c9179de57a14eb4aa7160643",
+    "models/label_064.ubj.gz": "cefa9d8fda363a40ff190ac2aef555c7bb6eb28c3b7c35f5ce04d8204566484f",
+    "models/label_065.ubj.gz": "f8fb23fb9be9825268a18cdee040eb8260b0a717eb2ff969a6a632fe7f90f71c",
+    "models/label_066.ubj.gz": "a35021ab04665619f57717abf91a13053a2225293501329a04da4817bdab9ca3",
+    "models/label_067.ubj.gz": "06ab1e2600ddba6e6d947c353b632778a1258f44488f3f46749a9593faa3d188",
+    "models/label_068.ubj.gz": "bde5b56c221f9c7e5ce29c18cbf391ae2e8b0e957209b64ba910a314ff7a5045",
+    "models/label_069.ubj.gz": "14f269bdcd6dfdcb57b4d636b369c92f58855dc28ffb1365a2e4fb4f745bb11b",
+    "models/label_070.ubj.gz": "430e9f6c13dd1b2b896fc7e7f4ca9f738124b61cd29c9643ea6a09dad7e7f39f",
+    "models/label_071.ubj.gz": "820a114f486db32a6fb0080d759e8819b6d96134d70fe234cf4978dc5bef091a",
+    "models/label_072.ubj.gz": "f2ffcb13488e3c27acb6b19940a7d9101773f6119b8f6a91f4f508c526e94361",
+    "models/label_073.ubj.gz": "c3ee08e98a564d3103c7f5b2325218ae6412b4aefe2c6f4fda2e8a0a4d29dcfe",
+    "models/label_074.ubj.gz": "c44c2ad68eb3780a04e990236b25d233db75daf2c4fd9fc8af6c4817dfa249d7",
+    "models/label_075.ubj.gz": "00549aa786aa93023ad8e01448cc76e2c6f33ee565f4ace4512bf5cf487a9cf1",
+    "models/label_076.ubj.gz": "59318b31f80226184dbc7e6b268028e5400ac65469e24dbfea5d93dfea5708b1",
+    "models/label_077.ubj.gz": "809a68ae071c7878391e017376a20a06f7835a05747fec84a8f42621243aa09b",
+    "models/label_078.ubj.gz": "1771ce97985b4cd285baa77dafed3890593a00d1a08587348dd36fab757fd7f8",
+    "models/label_079.ubj.gz": "b7f04eaba95b1273b9be4e5d3872374a2709a5730721f97f09eb100a3e9651dc",
+    "models/label_080.ubj.gz": "a14fa8f0e1027a67775ddeaf5b86665a497d73e4d1c66d46dd982f3e9d001a72",
+    "models/label_081.ubj.gz": "6acc0fd7933ea860c8b21c942655478ba4ec101930982fc46496258b5827986b",
+    "models/label_082.ubj.gz": "f4dd110c57f63991c3901173d1605b949fb44db898b5b0801d142f88b3f691ae",
+    "models/label_083.ubj.gz": "17396a4474d89e0a7e30685f43021ee4a34b0e22126da6c679c865a217027072",
+    "models/label_084.ubj.gz": "611e775d6ae483daf12136d5d5c3c95d2273ae576a9e93eeaf0bb4912086b7c6",
+    "models/label_085.ubj.gz": "466afe578dcda78fe1d5e04fb628c77fcfee97139357f0a80f9814d259f4c882",
+    "models/label_086.ubj.gz": "e69efbd4013f5aee070943613fdcd5c42b27939d0d8494e9778d1eb81db7a865",
+    "models/label_087.ubj.gz": "93363ac9b892958586c95ab6e28c5b73387fb3b3d00ce50d77e86a40d8afac94",
+    "models/label_088.ubj.gz": "b8d4eb4df8b2163e4f6618111717bbd65fb22e87971796ee0db7cef20c4550a3",
+    "models/label_089.ubj.gz": "904ef1919df9cba0f51dd33b5d6db1f7ef466347814958b0071f01de5a86c518",
+    "models/label_090.ubj.gz": "8b6215f60204aea73448d12a2aa2f2abe8076fbeacfa352242db27bf2a9f4419",
+    "models/label_091.ubj.gz": "f7b4f6f4920aee849fe20f8006d2daadea558663f966b3c6c77c44aac897f0cb",
+    "models/label_092.ubj.gz": "87d40c9be5706a7bf2e8ee00e456eaf9aa0d80a4e62295f313694bd9fcebe226",
+    "models/label_093.ubj.gz": "5acd7c7dce0bab7f07d90e8dee2164e5dd133569809f916242ddd4c57fec704c",
+    "models/label_094.ubj.gz": "e732104cf583acdb8a6ea4f859d4adeda008e4b6a6cc87101d1ae8bee5e8d2a1",
+    "models/label_095.ubj.gz": "84c62c544f3a9e0453b731050ad0f232b468c4d0f30be2182fd485f8828bcb19",
+    "models/label_096.ubj.gz": "c85147ecf83ed858ac04ee8d035a395486df57646bf65e6cef52f39b31dae88f",
+    "models/label_097.ubj.gz": "0678923132f615b58a04442cc08ec55a26c9b035e775ce60afff467d858cfc0f",
+    "models/label_098.ubj.gz": "43f77ed70b636966752357beecd9309fa964d2be9d0f664a049dbb3b74acec5e",
+    "models/label_099.ubj.gz": "7c73741388c05eaf88bd2b85f799b9c4b7e4e4f0b890e842b6a80c4171ef421c",
+    "models/label_100.ubj.gz": "6bc843228a68554f727c1013eb60083cd851f508a8234ee6d0e407330f83e433",
+    "models/label_101.ubj.gz": "2b298b78051f3609430e8d3fc5b32b7ae1fbc9a556e9a52a3dc0a72d09d88ff2",
+    "models/label_102.ubj.gz": "3ed47ad4769bc7424885df1caa7a76c3e3ddc2a1864d9931cc7a547c66017f49",
+    "models/label_103.ubj.gz": "81846cb4bb657d21bc6037bf0f5493005bf6eb8736cffcfbc89fb3daad3b8084",
+    "models/label_104.ubj.gz": "fdda10a5468217c04eb275a52e47b3a4d455fa09da756781acf3cb6c50dd61eb",
+    "models/label_105.ubj.gz": "c08c978c93ea3b75f747504eb1fea34ab405ad459a8b7020971eb47423879997",
+    "models/label_106.ubj.gz": "735510b17d8c721072fb2c563a817041668bce131a47e02981718821a1afa55a"
+  }
+}

@@ -1,0 +1,12 @@
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+.streamlit/secrets.toml
+.env
+.env.*
+*.joblib
+*.pkl
+*.zip
+*.rar
+artifacts/.bundle-build-*/
