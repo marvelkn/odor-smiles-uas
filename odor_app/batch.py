@@ -9,7 +9,8 @@ from .features import InvalidSmiles
 from .inference import Prediction, Predictor
 
 MAX_BATCH_BYTES = 1024 * 1024
-MAX_BATCH_ROWS = 100
+MAX_BATCH_ROWS = 500
+INFERENCE_CHUNK_ROWS = 100
 
 
 def read_smiles_csv(raw: bytes) -> list[str]:
@@ -50,17 +51,19 @@ class BatchResult:
 
 
 def predict_csv(predictor: Predictor, values: list[str]) -> list[BatchResult]:
-    valid_rows, features = [], []
     results = {}
-    for index, value in enumerate(values, start=1):
-        try:
-            features.append(predictor.features.transform(value))
-        except InvalidSmiles as error:
-            results[index] = BatchResult(index, message=str(error))
-        else:
-            valid_rows.append(index)
-    for index, prediction in zip(valid_rows, predictor.predict_many(features), strict=True):
-        results[index] = BatchResult(index, prediction)
+    for offset in range(0, len(values), INFERENCE_CHUNK_ROWS):
+        valid_rows, features = [], []
+        chunk = values[offset:offset + INFERENCE_CHUNK_ROWS]
+        for index, value in enumerate(chunk, start=offset + 1):
+            try:
+                features.append(predictor.features.transform(value))
+            except InvalidSmiles as error:
+                results[index] = BatchResult(index, message=str(error))
+            else:
+                valid_rows.append(index)
+        for index, prediction in zip(valid_rows, predictor.predict_many(features), strict=True):
+            results[index] = BatchResult(index, prediction)
     return [results[index] for index in range(1, len(values) + 1)]
 
 

@@ -1,6 +1,6 @@
 # Prediksi aroma molekul · UAS IS411
 
-Aplikasi Streamlit untuk memeringkat 107 label aroma dari satu struktur molekul dalam format SMILES. Aplikasi memuat model XGBoost Optuna dari penelitian UAS pada CPU. Pilih salah satu dari 100 molekul katalog, tempel SMILES sendiri, atau jalankan prediksi batch.
+Aplikasi Streamlit untuk memeringkat 107 label aroma dari satu struktur molekul dalam format SMILES. Aplikasi memuat model XGBoost Optuna dari penelitian UAS pada CPU. Pilih salah satu dari 500 molekul katalog, tempel SMILES sendiri, bandingkan molekul, atau jalankan prediksi batch.
 
 ## Jalankan lokal
 
@@ -14,9 +14,11 @@ py -3.12 -m venv .venv
 
 Buka `http://localhost:8501`, pilih contoh **Etanol**, lalu klik **Prediksi aroma**. Hasil memisahkan label yang mencapai ambang `0,60` dari lima kandidat dengan skor tertinggi. Unduhan CSV memuat skor semua label dan identitas versi model.
 
-Untuk batch, klik **Prediksi 100 molekul katalog** agar seluruh contoh langsung diproses. Kamu juga bisa mengunduh **CSV katalog** atau **template CSV**. Aplikasi menerima CSV UTF-8 dengan satu kolom `smiles`, maksimal 100 baris dan 1 MB. Baris dengan struktur yang tidak valid mendapat pesan sendiri, sementara baris valid tetap diproses.
+Di tab **Bandingkan**, pilih dua atau tiga molekul. Tabel menampilkan gabungan lima kandidat teratas setiap molekul pada skala yang sama. Unduhan perbandingan berisi seluruh 107 skor per molekul. Di tab **Katalog**, cari nama, CID lengkap, atau potongan SMILES. Daftar yang tampil bisa diunduh dengan nama dan CID.
 
-Katalog di [data/molecule_catalog.json](data/molecule_catalog.json) adalah 100 struktur unik dari data UAS yang sudah dibersihkan. Nama dicocokkan dari tabel sumber dengan CID dan SMILES kanonik. Katalog menyediakan contoh input untuk mencoba aplikasi dan tidak digunakan untuk melaporkan hasil evaluasi baru.
+Untuk batch, klik **Prediksi 500 molekul katalog** agar seluruh contoh langsung diproses. Kamu juga bisa mengunduh **CSV katalog** atau **template CSV**. Aplikasi menerima CSV UTF-8 dengan satu kolom `smiles`, maksimal 500 baris dan 1 MB. Baris dengan struktur yang tidak valid mendapat pesan sendiri, sementara baris valid tetap diproses.
+
+Katalog di [data/molecule_catalog.json](data/molecule_catalog.json) berisi 500 struktur unik dari data UAS yang sudah dibersihkan. Nama dicocokkan dari tabel sumber dengan CID dan SMILES kanonik. Katalog menyediakan contoh input untuk mencoba aplikasi.
 
 ## Deploy ke Streamlit Community Cloud
 
@@ -46,7 +48,7 @@ python -m pytest -q
 python -m scripts.benchmark
 ```
 
-Skrip benchmark melaporkan waktu pemuatan native, p95 inferensi lokal, satu batch 100 molekul, memori proses, serta konsistensi dua worker. Hasil lokal memberi baseline untuk dibandingkan dengan pengukuran di cloud.
+Skrip benchmark melaporkan waktu pemuatan native, p95 inferensi lokal, satu batch berisi seluruh molekul katalog, memori proses, serta konsistensi dua worker. Hasil lokal memberi baseline untuk dibandingkan dengan pengukuran di cloud.
 
 Jika tim perlu membangun ulang bundle dari paket eksperimen, pasang `requirements-export.txt` di environment Python terpisah dan jalankan `python -m scripts.build_bundle /path/to/Run_GPU_Lanjutan` di checkout yang belum memiliki bundle. Skrip memeriksa checksum sumber, mengekspor format native, dan membandingkan semua skor test dengan hasil tersimpan. Gunakan hanya checkpoint `.joblib` lokal dari paket lab terpercaya. Aplikasi yang dipublikasikan memakai file UBJSON terkompresi dan tidak memerlukan `joblib` saat inferensi. Environment aplikasi memakai NumPy 2.3.5 untuk kompatibilitas dengan PyArrow yang digunakan tabel Streamlit. Environment ekspor mempertahankan NumPy 1.26.4 dari eksperimen.
 

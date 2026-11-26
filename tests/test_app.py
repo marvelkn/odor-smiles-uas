@@ -19,7 +19,7 @@ def predict_button(app):
 def test_example_prediction_and_clear():
     app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
     assert not app.exception
-    assert len(app.selectbox(key="example").options) == 100
+    assert len(app.selectbox(key="example").options) == 500
     app.selectbox(key="example").select("Etanol").run()
     assert app.text_input(key="smiles").value == "CCO"
     predict_button(app).click().run()
@@ -33,9 +33,9 @@ def test_example_prediction_and_clear():
 
 def test_prediction_from_catalog_without_uploading():
     catalog = json.loads((ROOT / "data/molecule_catalog.json").read_text(encoding="utf-8"))
-    assert len(catalog) == MAX_BATCH_ROWS == 100
+    assert len(catalog) == MAX_BATCH_ROWS == 500
     for key in ("name", "smiles", "cid"):
-        assert len({item[key] for item in catalog}) == 100
+        assert len({item[key] for item in catalog}) == 500
     all_smiles = [item["smiles"] for item in catalog]
     assert read_smiles_csv(make_csv(("smiles",), zip(all_smiles))) == all_smiles
 
@@ -43,12 +43,42 @@ def test_prediction_from_catalog_without_uploading():
     app.button(key="run_catalog").click().run()
     assert not app.exception and not app.error
     assert any(item.value == "Hasil katalog" for item in app.subheader)
-    results, labels = app.session_state["batch_result"]
-    assert len(results) == 100 and all(item.prediction is not None for item in results)
-    assert app.dataframe[0].value["Molekul"].tolist() == [item["name"] for item in catalog]
-    exported = batch_csv(results, labels, names=[item["name"] for item in catalog])
+    results, labels, names = app.session_state["batch_outcome"]
+    assert len(results) == 500 and all(item.prediction is not None for item in results)
+    batch_table = next(item.value for item in app.dataframe if "Kandidat tertinggi" in item.value.columns)
+    assert batch_table["Molekul"].tolist() == names == [item["name"] for item in catalog]
+    exported = batch_csv(results, labels, names=names)
     rows = list(csv.DictReader(exported.decode("utf-8-sig").splitlines()))
-    assert len(rows) == 100 and rows[0]["molekul"] == "Etanol" and rows[0]["status"] == "ok"
+    assert len(rows) == 500 and rows[0]["molekul"] == "Etanol" and rows[0]["status"] == "ok"
+    assert rows[-1]["molekul"] == names[-1] and rows[-1]["status"] == "ok"
+
+
+def test_catalog_searches_by_name_cid_and_smiles():
+    app = AppTest.from_file(str(ROOT / "app.py")).run()
+    for query in ("vAniLiN", "1183", "COc1cc(C=O)ccc1O"):
+        app.text_input(key="catalog_search").set_value(query).run()
+        assert not app.exception
+        assert "Vanilin" in app.dataframe[0].value["Molekul"].tolist()
+    app.text_input(key="catalog_search").set_value("nama yang tidak ada").run()
+    assert any("Tidak ada hasil" in item.value for item in app.info)
+
+
+def test_compare_displays_scores_per_molecule_and_resets_for_new_selection():
+    app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
+    assert app.button(key="run_comparison").disabled
+    names = ["Etanol", "Vanilin", "Etil asetat"]
+    app.multiselect(key="compare_names").set_value(names).run()
+    app.button(key="run_comparison").click().run()
+    assert not app.exception and not app.error
+    stored_names, predictions = app.session_state["catalog_comparison"]
+    assert stored_names == tuple(names)
+    table = next(item.value for item in app.dataframe if "Label aroma" in item.value.columns)
+    assert list(table.columns) == ["Label aroma", *names]
+    assert set(table["Label aroma"]) == {label for pred in predictions for label, _ in pred.scores[:5]}
+    for name, pred in zip(names, predictions, strict=True):
+        assert table[name].tolist() == [dict(pred.scores)[label] for label in table["Label aroma"]]
+    app.multiselect(key="compare_names").set_value(names[:2]).run()
+    assert not any(item.value == "Hasil perbandingan" for item in app.subheader)
 
 
 def test_invalid_smiles_has_actionable_message():

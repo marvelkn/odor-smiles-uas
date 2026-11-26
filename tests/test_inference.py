@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 
 from odor_app.artifacts import BUNDLE, BundleError, load_bundle, manifest_digest
-from odor_app.batch import batch_csv, predict_csv, read_smiles_csv, single_csv
+from odor_app.batch import INFERENCE_CHUNK_ROWS, MAX_BATCH_ROWS, batch_csv, predict_csv, read_smiles_csv, single_csv
 
 
 def test_all_107_scores_match_original_models(predictor):
@@ -29,19 +29,20 @@ def test_manifest_rejects_wrong_digest():
 
 
 def test_batch_preserves_row_order_and_keeps_valid_rows(predictor):
-    values = read_smiles_csv(b"smiles\nCCO\nC1\nCCO.O\nCC(=O)OCC\n")
+    valid_prefix = INFERENCE_CHUNK_ROWS - 1
+    values = read_smiles_csv(b"smiles\n" + b"CCO\n" * valid_prefix + b"C1\nCCO.O\nCC(=O)OCC\n")
     results = predict_csv(predictor, values)
-    assert [result.row for result in results] == [1, 2, 3, 4]
-    assert [result.prediction is not None for result in results] == [True, False, False, True]
+    assert [result.row for result in results] == list(range(1, len(values) + 1))
+    assert [result.prediction is not None for result in results] == [True] * valid_prefix + [False, False, True]
     rows = list(csv.DictReader(batch_csv(results, predictor.bundle.labels).decode("utf-8-sig").splitlines()))
-    assert [r["status"] for r in rows] == ["ok", "invalid", "invalid", "ok"]
+    assert [r["status"] for r in rows] == ["ok"] * valid_prefix + ["invalid", "invalid", "ok"]
     single_scores = dict(predictor.predict("CCO").scores)
     for label in predictor.bundle.labels:
         assert float(rows[0][f"skor_{label}"]) == single_scores[label]
 
 
 @pytest.mark.parametrize(
-    "raw", [b"id,smiles\n1,CCO\n", b"smiles\n", b"smiles\n" + b"CCO\n" * 101,
+    "raw", [b"id,smiles\n1,CCO\n", b"smiles\n", b"smiles\n" + b"CCO\n" * (MAX_BATCH_ROWS + 1),
             b"X" * (1024 * 1024 + 1), b"smiles\n\xff\n", b'smiles\n"CCO'],
     ids=["header", "empty", "too-many-rows", "too-many-bytes", "encoding", "unclosed-quote"],
 )

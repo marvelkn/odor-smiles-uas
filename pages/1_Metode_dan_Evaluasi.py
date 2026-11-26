@@ -27,7 +27,9 @@ st.markdown(
     "Cleaning menghasilkan **8.182 molekul unik**. Proyek memakai preprocessing, fitur, dan evaluasi sendiri. "
     "[Data dan kode sumber penulis](https://osf.io/vfru6/)."
 )
-st.write("Katalog berisi 100 molekul dari data proyek yang sudah dibersihkan. Nama diperiksa melalui kecocokan CID dan struktur SMILES. Katalog disediakan sebagai pilihan input untuk demo.")
+catalog_size = len(public_data("molecule_catalog.json"))
+st.write(f"Katalog berisi {catalog_size} molekul dari data proyek yang sudah dibersihkan. "
+         "Nama diperiksa melalui kecocokan CID dan struktur SMILES. Katalog disediakan sebagai pilihan input untuk demo.")
 st.markdown(
     "Data test telah dipakai pada tahap sebelumnya, sehingga evaluasinya **eksploratif**. "
     "Anotasi yang kosong belum tentu berarti aroma itu tidak hadir. "

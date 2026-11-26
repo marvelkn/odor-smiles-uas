@@ -4,6 +4,7 @@ from rdkit import Chem
 import streamlit as st
 
 from odor_app.batch import MAX_BATCH_ROWS, batch_csv, make_csv, predict_csv, read_smiles_csv, single_csv
+from odor_app.catalog import show_catalog, show_comparison
 from odor_app.features import InvalidSmiles, MAX_SMILES_LENGTH
 from odor_app.ui import get_predictor, log_event, public_data
 
@@ -30,8 +31,7 @@ def clear_single():
 
 
 def clear_batch():
-    st.session_state.pop("batch_result", None)
-    st.session_state.pop("batch_from_catalog", None)
+    st.session_state.pop("batch_outcome", None)
     st.session_state["upload_version"] = st.session_state.get("upload_version", 0) + 1
 
 
@@ -52,7 +52,9 @@ def show_structure(smiles):
 
 
 st.info("Gunakan struktur publik atau contoh bawaan. Input diproses di server Streamlit dan tidak ditulis ke penyimpanan aplikasi.")
-single_tab, batch_tab = st.tabs(["Satu molekul", "Banyak molekul (CSV)"])
+single_tab, compare_tab, catalog_tab, batch_tab = st.tabs(
+    ["Satu molekul", "Bandingkan", "Katalog", "Banyak molekul (CSV)"]
+)
 
 with single_tab:
     chosen = st.selectbox(f"Pilih dari katalog {len(catalog)} molekul", list(catalog_by_name), index=None,
@@ -87,13 +89,14 @@ with single_tab:
 
     if prediction := st.session_state.get("prediction"):
         st.subheader("Hasil prediksi")
-        st.caption(f"Model {prediction.model_version} · ambang {prediction.threshold:.2f}")
+        threshold = f"{prediction.threshold:.2f}".replace(".", ",")
+        st.caption(f"Model {prediction.model_version} · ambang {threshold}")
         st.text(prediction.smiles)
         st.markdown("**Label yang lolos ambang**")
         if prediction.passing:
             show_scores(prediction.passing)
         else:
-            st.info("Tidak ada label yang mencapai ambang 0,60.")
+            st.info(f"Tidak ada label yang mencapai ambang {threshold}.")
         st.markdown("**Top 5 kandidat menurut skor**")
         show_scores(prediction.scores[:5])
         st.caption("Skor membantu memeringkat label. Skor belum dikalibrasi sebagai peluang persepsi manusia dan tidak mengukur intensitas aroma.")
@@ -102,16 +105,22 @@ with single_tab:
                 show_structure(prediction.smiles)
             except Exception:
                 st.info("Gambar struktur belum tersedia. Skor prediksi tetap bisa digunakan.")
-        st.download_button("Unduh skor 107 label", single_csv(prediction), "prediksi-aroma.csv", "text/csv")
+        st.download_button("Unduh skor 107 label", single_csv(prediction), "prediksi-aroma.csv", "text/csv", on_click="ignore")
+
+with compare_tab:
+    show_comparison(catalog_by_name)
+
+with catalog_tab:
+    show_catalog(catalog)
 
 with batch_tab:
     st.write(f"Jalankan prediksi untuk {len(catalog)} molekul dari katalog, atau unggah CSV kamu sendiri.")
     use_catalog = st.button(f"Prediksi {len(catalog)} molekul katalog", type="primary", key="run_catalog")
     template_col, catalog_col = st.columns(2)
     template_col.download_button("Unduh template CSV", make_csv(("smiles",), ((value,) for value in catalog_smiles[:3])),
-                                 "template-smiles.csv", "text/csv")
+                                 "template-smiles.csv", "text/csv", on_click="ignore")
     catalog_col.download_button("Unduh CSV katalog", make_csv(("smiles",), ((value,) for value in catalog_smiles)),
-                                "katalog-smiles.csv", "text/csv")
+                                "katalog-smiles.csv", "text/csv", on_click="ignore")
     st.caption(f"Format unggahan: CSV UTF-8 dengan satu kolom `smiles`, maksimal 1 MB dan {MAX_BATCH_ROWS} baris data.")
     upload_version = st.session_state.get("upload_version", 0)
     with st.form(f"batch_{upload_version}"):
@@ -120,8 +129,7 @@ with batch_tab:
     st.button("Bersihkan unggahan dan hasil", on_click=clear_batch)
 
     if use_catalog or run_batch:
-        st.session_state.pop("batch_result", None)
-        st.session_state.pop("batch_from_catalog", None)
+        st.session_state.pop("batch_outcome", None)
         try:
             if use_catalog:
                 values = catalog_smiles
@@ -137,32 +145,31 @@ with batch_tab:
                 predictor = get_predictor()
                 with st.spinner(f"Memproses {len(values)} molekul…"):
                     results = predict_csv(predictor, values)
-                st.session_state["batch_result"] = (results, predictor.bundle.labels)
-                st.session_state["batch_from_catalog"] = use_catalog
+                names = list(catalog_by_name) if use_catalog else None
+                st.session_state["batch_outcome"] = (results, predictor.bundle.labels, names)
                 log_event("batch_catalog" if use_catalog else "batch", "ok", perf_counter() - start,
                           len(values), predictor.bundle.version)
             except Exception:
                 st.error("Prediksi batch belum tersedia. Muat ulang halaman atau coba lagi beberapa saat.")
                 log_event("batch_catalog" if use_catalog else "batch", "unavailable", perf_counter() - start, len(values))
 
-    if batch := st.session_state.get("batch_result"):
-        results, labels = batch
-        from_catalog = st.session_state.get("batch_from_catalog", False)
+    if batch := st.session_state.get("batch_outcome"):
+        results, labels, names = batch
         successful = sum(item.prediction is not None for item in results)
-        st.subheader("Hasil katalog" if from_catalog else "Hasil CSV")
+        st.subheader("Hasil katalog" if names else "Hasil CSV")
         st.write(f"{successful} dari {len(results)} baris berhasil diprediksi.")
         display = []
         for item in results:
             result = item.prediction
-            identity = {"Molekul": catalog[item.row - 1]["name"]} if from_catalog else {"Baris data": item.row}
+            identity = {"Molekul": names[item.row - 1]} if names else {"Baris data": item.row}
             display.append({**identity,
                             "Kandidat tertinggi": result.scores[0][0] if result else "—",
                             "Skor model": f"{result.scores[0][1]:.4f}" if result else "—",
                             "Lolos ambang": str(len(result.passing)) if result else "—",
                             "Status": "Berhasil" if result else item.message})
         st.dataframe(display, hide_index=True, width="stretch")
-        if not from_catalog:
+        if not names:
             st.caption("Urutan dihitung dari baris data pertama setelah header.")
         st.caption("Unduhan memuat skor 107 label untuk setiap molekul yang berhasil diprediksi.")
-        names = [item["name"] for item in catalog] if from_catalog else None
-        st.download_button("Unduh hasil CSV", batch_csv(results, labels, names=names), "hasil-prediksi-aroma.csv", "text/csv")
+        st.download_button("Unduh hasil CSV", batch_csv(results, labels, names=names),
+                           "hasil-prediksi-aroma.csv", "text/csv", on_click="ignore")
