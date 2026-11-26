@@ -1,7 +1,6 @@
 from time import perf_counter
 
 from rdkit import Chem
-from rdkit.Chem.Draw import rdMolDraw2D
 import streamlit as st
 
 from odor_app.batch import MAX_BATCH_ROWS, batch_csv, make_csv, predict_csv, read_smiles_csv, single_csv
@@ -38,6 +37,9 @@ def show_scores(rows):
 
 
 def show_structure(smiles):
+    # Keep prediction available even if the host cannot initialize the drawing backend.
+    from rdkit.Chem.Draw import rdMolDraw2D
+
     molecule = Chem.MolFromSmiles(smiles)
     if molecule is not None:
         drawer = rdMolDraw2D.MolDraw2DCairo(460, 250)

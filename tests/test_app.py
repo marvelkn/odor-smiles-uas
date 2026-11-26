@@ -1,4 +1,5 @@
 from pathlib import Path
+import sys
 
 from streamlit.testing.v1 import AppTest
 
@@ -32,6 +33,16 @@ def test_invalid_smiles_has_actionable_message():
     predict_button(app).click().run()
     assert not app.exception
     assert any("multikomponen" in item.value for item in app.warning)
+
+
+def test_missing_drawing_backend_does_not_block_prediction(monkeypatch):
+    monkeypatch.setitem(sys.modules, "rdkit.Chem.Draw", None)
+    app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=60).run()
+    app.text_input(key="smiles").set_value("CCO")
+    predict_button(app).click().run()
+    assert not app.exception and not app.error
+    assert any(item.value == "Hasil prediksi" for item in app.subheader)
+    assert any("Gambar struktur belum tersedia" in item.value for item in app.info)
 
 
 def test_zero_labels_pass_does_not_hide_ranked_candidates(monkeypatch):
